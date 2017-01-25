@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
 from django.utils.safestring import mark_safe
 from django.conf import settings
 
@@ -42,7 +42,7 @@ class Room(models.Model):
     # Define generic relation to target object. This is optional.
     content_type = models.ForeignKey(ContentType, blank=True, null=True)
     object_id = models.PositiveIntegerField(blank=True, null=True)
-    content_object = generic.GenericForeignKey()
+    content_object = GenericForeignKey()
 
     def __unicode__(self):
         return u'%s' % (self.name)
